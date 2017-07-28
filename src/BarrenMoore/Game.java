@@ -2,16 +2,15 @@ package BarrenMoore;
 
 import java.util.Scanner;
 
-import library.Item;
-
 public class Game {
 
+	static int playerXLoc, playerYLoc = 0;
+	
 	public void createMap() {
 
+
 		char grid[][] = new char[12][12];
-		Scanner move = new Scanner(System.in);
-		System.out.println("Here is the current game board:");
-		System.out.println("-------------------------------");
+
 
 		for (int i = 0; i < grid.length; i++) {
 			for (int j = 0; j < grid.length; j++) {
@@ -24,12 +23,27 @@ public class Game {
 					grid[i][j] = '.';
 				}
 				grid[0][0] = 'P';
-				grid[9][9] = 'T';
+
 				System.out.print(grid[i][j]);
 			}
 			System.out.println("");
 		}
-		System.out.print("Enter your move (U/D/L/R)>");
 	}
 
+
+	public void movement() {
+		
+		String move = "";
+		System.out.println("Enter your move (U/D/L/R)>");
+		move = InputClass.sc.nextLine();
+
+		switch (move) {
+		  case "u": playerYLoc += 1; break;
+		  case "d": playerYLoc -= 1; break;
+		  case "r": playerXLoc += 1; break;
+		  case "l": playerXLoc -= 1; break;
+		}
+		System.out.println("Contents of location x " + playerXLoc); 		
+	}
+	
 }
