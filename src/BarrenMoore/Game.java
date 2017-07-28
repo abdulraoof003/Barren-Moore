@@ -8,8 +8,6 @@ public class Game {
 	int treasuresCollected = 0;
 	int livesRemaining = 3;
 
-	
-	
 	private char[][] grid;
 
 	public void createMap() {
@@ -35,45 +33,51 @@ public class Game {
 	}
 
 	public void movement() {
-		
+
 		String move = "";
 		System.out.println("Enter your move (U/D/L/R)>");
 		move = InputClass.sc.nextLine();
 
 		switch (move) {
 
-		  case "u": playerXLoc -= 1; break;
-		  case "d": playerXLoc += 1; break;
-		  case "r": playerYLoc += 1; break;
-		  case "l": playerYLoc -= 1; break;
+		case "u":
+			playerXLoc -= 1;
+			break;
+		case "d":
+			playerXLoc += 1;
+			break;
+		case "r":
+			playerYLoc += 1;
+			break;
+		case "l":
+			playerYLoc -= 1;
+			break;}
+
+			// error trapping if go out of bounds
+
+			if (((playerYLoc < 0) || (playerYLoc > 11)) || ((playerXLoc < 0) || (playerXLoc > 11))) {
+				System.out.println("Sorry you have fallen off the moor");
+				System.exit(0);;
+			}
 		
-		
-		
-//		  case "u": playerYLoc += 1; break;  //goes right
-//		  case "d": playerYLoc -= 1; break;  //goes left
-//		  case "r": playerXLoc += 1; break;  //goes down
-//		  case "l": playerXLoc -= 1; break;  //goes up
-		}
-		if (grid [playerXLoc] [playerYLoc] == 'T') {
-			treasuresCollected += 1;}
-		else if (grid [playerXLoc] [playerYLoc] == 'L') {
+		if (grid[playerXLoc][playerYLoc] == 'T') {
+			treasuresCollected += 1;
+		} else if (grid[playerXLoc][playerYLoc] == 'L') {
 			livesRemaining -= 1;
 		}
 
 		grid[playerXLoc][playerYLoc] = 'P';
-		
+
 		for (int i = 0; i < grid.length; i++) {
 			for (int j = 0; j < grid.length; j++) {
 				System.out.print(grid[i][j]);
 			}
-			System.out.println("");}
-		
-		
-		
+			System.out.println("");
+		}
+
 		System.out.println("Treasures Collected " + treasuresCollected);
 		System.out.println("Lives remaining " + livesRemaining);
-		
- 		
+
 	}
-	
+
 }
